@@ -26,11 +26,12 @@
     volatile char *display = (volatile char*) VIDEO_MEMORY;
 
 
-    void print_char(unsigned int xpos, char character, unsigned char fg, unsigned char bg)
+    void print_char(char character, unsigned char bg_color, unsigned char fg_color)
     {
-        char *fb = (char* ) VIDEO_MEMORY;
-        fb[xpos] = character;
-        fb[xpos + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
+        unsigned int attribute_Byte = ((bg_color & 0x0F) << 4) | (fg_color & 0x0F);
+
+        *display++ = character;
+        *display++ = attribute_Byte;
 
     }
 
@@ -43,25 +44,26 @@
      *  @param fg The foreground color
      *  @param bg The background color
      */
-    void print_string(char *string, unsigned char fg, unsigned char bg) {
+    void print_string(char *string, unsigned char bg_color, unsigned char fg_color) {
         
-        unsigned int atribute_Byte = (fg & 0x0F) << 4 | (bg & 0x0F);
+        unsigned int attribute_Byte = (bg_color & 0x0F) << 4 | (fg_color & 0x0F);
 
         while ( *string != 0)
         {
             *display++ = *string++;
-            *display++  = atribute_Byte;
+            *display++  = attribute_Byte;
         }
         
     }
 
     void clear_screen() {
         
-        //unsigned int atribute_Byte = ((BLUE & 0x0F)<< 4) | (WHITE & 0x0F);
-        unsigned int  blank_Space =  ' ' | (( BLUE & 0x0F) << 4);
+        unsigned int attribute_Byte = ((BLUE & 0x0F)<< 4) | (WHITE & 0x0F);
+        unsigned int  blank_Space =  ' ';
 
         for (int i = 0; i < 80*25; i++)
         {
-            display[i] = blank_Space;
+            *display++ = blank_Space;
+            *display++ = attribute_Byte;
         }
     }
