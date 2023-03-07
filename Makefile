@@ -12,7 +12,8 @@ kernel.elf: $(OBJECTS)
 	ld $(LDFLAGS) $(OBJECTS) -o kernel.elf
 
 os.iso: kernel.elf
-	cp kernel.elf iso/boot/kernel/kernel.elf
+	# cp kernel.elf iso/boot/kernel/kernel.elf
+	mv kernel.elf iso/boot/kernel/kernel.elf
 	genisoimage -R                              		\
 				-b boot/grub/stage2_eltorito			\
 				-no-emul-boot                   		\
@@ -26,7 +27,7 @@ os.iso: kernel.elf
 
 run: os.iso
 	qemu-system-i386 		\
-		-cdrom os.iso		\
+		-cdrom os.iso			\
 		-boot d 			\
 		-m 10				\
 		-d int -D ./log.txt	\
@@ -38,4 +39,4 @@ run: os.iso
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o kernel.elf os.iso
+	rm -rf *.o iso/boot/kernel/kernel.elf os.iso *.txt
