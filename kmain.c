@@ -4,12 +4,14 @@
 
 int kmain()
 {
-    //char queso[] = "queso"; 
+    char queso[] = "queso"; 
 
 
+    print_string(queso, BLUE, WHITE);
+    print_char('A', GREEN, BLUE);
     clear_screen();
-    //print_string(queso, BLUE, WHITE);
-    //print_char(0, 'A', GREEN, BLUE);
+
+  
         /* code */
         return 0;
 }
