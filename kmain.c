@@ -1,23 +1,18 @@
 #include "libs/headers/pack.h"
-#include "libs/headers/stdio.h"
-
+#include "libs/stdio.c"
 
 int kmain()
 {
-    char queso[] = "queso"; 
+    //char queso[] = "queso"; 
 
-//print_string(queso, BLUE, WHITE);
+    //print_string(queso, BLUE, WHITE);
 
-<<<<<<< HEAD
-    print_string(queso, BLUE, WHITE);
-    print_char('A', GREEN, BLUE);
+    //print_string(queso, BLUE, 2);
+    //print_char('A', 1, 1);
     clear_screen();
 
   
-=======
-    print_char('A', GREEN, BLUE);
-    clear_screen();
->>>>>>> develop
+    //print_char('A', 1, 2);
         /* code */
         return 0;
 }

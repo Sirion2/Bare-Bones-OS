@@ -1,8 +1,7 @@
-
 extern kmain
 global loader       
 
-%define	VIDMEM	0xB8000		; video memory
+bits 32
 
 KERNEL_STACK_SIZE   equ 4096               
 MAGIC               equ 0x1BADB002      
@@ -14,20 +13,20 @@ section .data:
 section .text:                      
 
     align 4                        
-        dd MAGIC             
-        dd FLAGS                    
-        dd CHECKSUM                 
+        dd  MAGIC             
+        dd  FLAGS                    
+        dd  CHECKSUM                 
 
     loader:                                                 
-        mov eax, 0xCAFEBABE                                 
-        mov esp, kernel_stack + KERNEL_STACK_SIZE           
-        push ebx 
+        mov     eax, 0xCAFEBABE                                 
+        mov     esp, kernel_stack + KERNEL_STACK_SIZE           
+        push    ebx 
 
     call kmain ; kamin means kernel main
 
-        .loop:
-            hlt
-            jmp .loop     
+    .loop:
+        hlt
+        jmp .loop     
     
 
 section .bss:
