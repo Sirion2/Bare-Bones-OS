@@ -27,7 +27,7 @@ struct Color
 #define LIGHT_MAGENTA   13
 #define LIGHT_BROWN     14
 #define WHITE           15
-};
+}color;
 
 /**
  * STARTS Functions and Var Initialization
@@ -43,22 +43,50 @@ void move_cursor();
  * ENDS Functions and Var Initialization
 **/
 
-
-
-
-
 void print_char(const char character, unsigned char bg_color, unsigned char fg_color)
 {
     unsigned int attribute_Byte = ((bg_color & 0x0F) << 4) | (fg_color & 0x0F);
 
     *display++ = character;
     *display++ = attribute_Byte;
+    *display++ = attribute_Byte;
+
 
     cursor_y=0;
     cursor_x=0;  
     move_cursor();
 }
 
+void printf(char attr, char *string)
+{
+    char error[] = "error no se ha especificado el valor de la cadena";
+    //     for(int i=0; i < string[i]; i++)
+    //     counter++;
+
+    // return counter;
+    unsigned int attribute_Byte = (BLUE & 0x0F) << 4 | (WHITE & 0x0F);
+     while(*string != 0)
+     {
+           if(attr == 's')
+           {
+                *display++ = *string++;
+                *display++ = attribute_Byte;
+           }
+
+    }
+    
+        *display++ = *error;
+        *display++ = attribute_Byte;
+
+        // else if (attr == 'c')
+        // {
+        //     *display++ = 'o';
+        //     *display++ = attribute_Byte;
+        // } else {
+        //      *display++ = 'a';
+        //     *display++ = attribute_Byte;
+        // }
+}
 
 void print_string(const char *string, unsigned char bg_color, unsigned char fg_color)
 {
@@ -66,6 +94,7 @@ void print_string(const char *string, unsigned char bg_color, unsigned char fg_c
 
     while (*string != 0)
     {
+        //if(*string )
         *display++ = *string++;
         *display++ = attribute_Byte;
     }
