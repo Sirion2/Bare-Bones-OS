@@ -1,20 +1,25 @@
 #include "libs/headers/pack.h"
 #include "libs/stdio.c"
 
+
+void clear_screen();
+
 int kmain()
 {
-    //char queso[] = "queso"; 
+    char queso[] = "queso"; 
 
+//char queso2[] = "dsspde limpiado act"; 
     //print_string(queso, BLUE, WHITE);
-
-    //print_string(queso, BLUE, 2);
-    //print_char('A', 1, 1);
-    clear_screen();
-
-  
-    //print_char('A', 1, 2);
-        /* code */
-        return 0;
+    //strlen(&queso);
+    //print_char('2', BLUE, WHITE);
+    //clear_screen();
+    print_string(queso, BLUE, WHITE);
+    //clear_screen();
+    //print_string(queso, BLUE, WHITE);
+   // print_string(queso2, BLUE, WHITE);
+    //print_string(queso, BLUE, WHITE);
+    
+    return 0;
 }
 
 

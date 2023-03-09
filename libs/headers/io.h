@@ -1,6 +1,12 @@
 #ifndef INCLUDE_IO_H
 #define INCLUDE_IO_H
 
+// I/O ports <-- hex  and commands <-- dec
+#define COMMAND_PORT        0x3D4
+#define DATA_PORT           0x3D5
+#define HIGH_BYTE_LOCATION   14
+#define LOW_BYTE_LOCATION    15
+
 /**
  * outb:
  * envia la data al puerto I/O señalado

@@ -1,6 +1,13 @@
 #include "headers/io.h" 
 
-#define VIDEO_MEMORY 0xB8000
+
+
+struct Screen
+{
+    #define VIDEO_MEMORY    0xB8000
+    #define COLS            80
+    #define lINES           25
+};
 
 struct Color
 {
@@ -22,34 +29,39 @@ struct Color
 #define WHITE           15
 };
 
-// I/O ports <-- hex  and commands <-- dec
-#define COMMAND_PORT        0x3D4
-#define DATA_PORT           0x3D5
-#define HIGH_BYTE_LOCATION   14
-#define LOW_BYTE_LOCATION    15
+/**
+ * STARTS Functions and Var Initialization
+**/
 
-
-unsigned int cursor_x = 0, cursor_y = 0;
+unsigned volatile int cursor_x = 0, cursor_y = 0;
 
 volatile char *display = (volatile char *)VIDEO_MEMORY; // video memory buffer address direction
 
 void move_cursor();
 
-void print_char(char character, unsigned char bg_color, unsigned char fg_color)
+/**
+ * ENDS Functions and Var Initialization
+**/
+
+
+
+
+
+void print_char(const char character, unsigned char bg_color, unsigned char fg_color)
 {
     unsigned int attribute_Byte = ((bg_color & 0x0F) << 4) | (fg_color & 0x0F);
 
     *display++ = character;
     *display++ = attribute_Byte;
 
-    *display++ = character;
-    *display++ = attribute_Byte;
+    cursor_y=0;
+    cursor_x=0;  
+    move_cursor();
 }
-// https://stackoverflow.com/questions/7109964/creating-your-own-header-file-in-c
 
-void print_string(char *string, unsigned char bg_color, unsigned char fg_color)
+
+void print_string(const char *string, unsigned char bg_color, unsigned char fg_color)
 {
-
     unsigned int attribute_Byte = (bg_color & 0x0F) << 4 | (fg_color & 0x0F);
 
     while (*string != 0)
@@ -57,28 +69,45 @@ void print_string(char *string, unsigned char bg_color, unsigned char fg_color)
         *display++ = *string++;
         *display++ = attribute_Byte;
     }
+
+    cursor_y=0;
+    cursor_x=0;  
+    move_cursor(); 
+        
 }
 
 void clear_screen()
 {
     unsigned int attribute_Byte = ((BLUE & 0x0F) << 4) | (WHITE & 0x0F);
-    unsigned int blank_Space = ' ';
+    unsigned int blank_Space = 0x20; // <-- denotes [space] in ascii.
 
-    for (int i = 0; i < 80 * 25; i++)
+    for (int i = 0; i <= COLS * lINES; i++)
     {
         *display++ = blank_Space;
         *display++ = attribute_Byte;
     }
+
     cursor_x = 0;
-	cursor_y = 0;
-    move_cursor();
+    cursor_y = 0;
+    move_cursor(); 
 }
 
-void move_cursor() {
-    unsigned int pos = cursor_y * 80 + cursor_x;
+void move_cursor()
+{
+    unsigned int pos = cursor_y * COLS + cursor_x;
+
     outb(COMMAND_PORT,  HIGH_BYTE_LOCATION);
     outb(DATA_PORT,     ((pos >> 8) & 0x00FF));
     outb(COMMAND_PORT,  LOW_BYTE_LOCATION);
     outb(DATA_PORT,     pos);
+}
 
+unsigned int strlen(const char *string)
+{
+    unsigned int counter = 0;
+
+    for(int i=0; i < string[i]; i++)
+        counter++;
+
+    return counter;
 }
