@@ -1,7 +1,7 @@
 OBJECTS = loader.o kmain.o io.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
-			-nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
+		-nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
 LDFLAGS = -T link.ld -m elf_i386
 AS = nasm
 ASFLAGS = -f elf
