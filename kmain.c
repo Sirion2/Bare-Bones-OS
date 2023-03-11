@@ -1,6 +1,5 @@
 //#include "libs/headers/pack.h"
-#include "libs/bare_io.c"
-//void clear_screen();
+#include "libs/headers/bstdio.h"
 
 int kmain()
 {
@@ -15,8 +14,11 @@ int kmain()
     // print_string(queso1);
     // print_string(queso2);
     print_string(queso3);
-     print_string(queso4);
+    print_string(queso4);
     clear_screen();
+
+
+    //print_char(itoa(5, str, 16));
 
     //print_f('s', 1);
     return 0;

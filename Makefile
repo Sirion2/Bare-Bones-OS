@@ -1,4 +1,4 @@
-OBJECTS = loader.o kmain.o io.o
+OBJECTS = loader.o kmain.o libs/io.o libs/bstdio.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 		-nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
@@ -39,4 +39,4 @@ run: os.iso
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o iso/boot/kernel/kernel.elf os.iso *.txt
+	rm -rf *.o os.iso *.txt iso/boot/kernel/kernel.elf libs/*.o
