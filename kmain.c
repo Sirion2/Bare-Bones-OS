@@ -1,19 +1,22 @@
 //#include "libs/headers/pack.h"
 #include "libs/headers/bstdio.h"
 
+
 int kmain()
 {
    //char queso[] = "OStrtertertertertO"; 
    //char queso1[] = "234567"; 
    //char queso2[] = "ABCDEFGHIJKLNMOPQRSTuvwxyz01234567890111111111111111222sfsdfd25"; 
 
-    char queso3[] = "ABCDEFGHIJKLNMOPQRSTuvwxyz01234567890111112sfsdd25qwertyuioasdf"; 
+   // char queso3[] = "ABCDEFGHIJKLNMOPQRSTuvwxyz01234567890111112sfsdd25qwertyuioasdf"; 
     char queso4[] = "123456789101112mnñopq";
-
+    char pmode[] = "estamos en 64 bit chicoss";
     // print_string(queso);
     // print_string(queso1);
     // print_string(queso2);
-    print_string(queso3);
+     print_string(pmode);
+    //setGdt();
+   
     print_string(queso4);
     clear_screen();
 

@@ -22,13 +22,14 @@ section .text:
         mov     esp, kernel_stack + KERNEL_STACK_SIZE           
         push    ebx 
 
+
+    ;call setGdt:
     call kmain ; kamin means kernel main
 
     .loop:
         hlt
         jmp .loop     
     
-
 section .bss:
     align 4                                 
     kernel_stack:
