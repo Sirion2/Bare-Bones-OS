@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "pack.h": "c",
+        "bstdio.h": "c",
+        "io.h": "c"
+    }
+}

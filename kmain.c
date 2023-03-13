@@ -1,6 +1,35 @@
+//#include "libs/headers/pack.h"
+#include "libs/headers/bstdio.h"
 
 
-/* The C function */
-int sum_of_three (int arg1, int arg2, int arg3) {
-    return arg1 + arg2 + arg3;
+int kmain()
+{
+   //char queso[] = "OStrtertertertertO"; 
+   //char queso1[] = "234567"; 
+   //char queso2[] = "ABCDEFGHIJKLNMOPQRSTuvwxyz01234567890111111111111111222sfsdfd25"; 
+
+   // char queso3[] = "ABCDEFGHIJKLNMOPQRSTuvwxyz01234567890111112sfsdd25qwertyuioasdf"; 
+    char queso4[] = "123456789101112mnñopq";
+    char pmode[] = "estamos en 64 bit chicoss";
+    // print_string(queso);
+    // print_string(queso1);
+    // print_string(queso2);
+     print_string(pmode);
+    //setGdt();
+   
+    print_string(queso4);
+    clear_screen();
+
+
+    //print_char(itoa(5, str, 16));
+
+    //print_f('s', 1);
+    return 0;
 }
+
+
+// PACK(struct myStruct
+// {
+//     int a;
+//     int b;
+// });
