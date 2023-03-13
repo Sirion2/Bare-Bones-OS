@@ -2,8 +2,9 @@
 #define INCLUDE_BSTDIO_H
 
 #define VIDEO_MEMORY    0xB8000
+
 #define COLS            80
-#define lINES           25
+#define LINES           25
 
 #define BLACK           0
 #define BLUE            1
@@ -34,6 +35,8 @@ void move_cursor();
 int get_ypos();
 
 int get_xpos();
+
+int strlenf(const char *string);
 
 
 #endif

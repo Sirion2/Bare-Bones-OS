@@ -1,5 +1,5 @@
-#include "./headers/io.h" 
-#include "./headers/bstdio.h"
+#include "../../include/kernel/io.h" 
+#include "../../include/kernel/bstdio.h"
 
 volatile char *video_buffer = (volatile char *)VIDEO_MEMORY; // video memory buffer address direction
 
@@ -18,8 +18,8 @@ void print_char(const char *buffer)
 }
 
 void print_string(const char *buffer)
-{
-    while (*buffer != 0)
+{ 
+   while (*buffer != 0)
     {
         *video_buffer++ = *buffer++;
         *video_buffer++ = attribute_Byte;
@@ -34,7 +34,7 @@ void clear_screen()
 {
     unsigned const int blank_Space = 0x20; // <-- denotes [space] in ascii.
 
-    for (int i = 0; i <= COLS * lINES; i++)
+    for (int i = 0; i <= COLS * LINES; i++)
     {
         *video_buffer++ = blank_Space;
         *video_buffer++ = attribute_Byte; 
@@ -49,8 +49,6 @@ void move_cursor()
     outb(DATA_PORT,     ((pos >> 8) & 0x00FF));
     outb(COMMAND_PORT,  LOW_BYTE_LOCATION);
     outb(DATA_PORT,     pos & 0x00FF);
-
-
 }
 
 int get_ypos() {
@@ -63,11 +61,11 @@ int get_xpos() {
     return pos % COLS;
 }
 
-unsigned int strlen(const char *string)
+int strlenf(const char *string)
 {
-    unsigned int counter = 0;
+    int counter = 0;
 
-    for(int i=0; i < string[i]; i++)
+    for(int i=0; i <= string[i]; i++)
         counter++;
 
     return counter;

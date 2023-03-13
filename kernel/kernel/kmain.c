@@ -1,6 +1,4 @@
-//#include "libs/headers/pack.h"
-#include "libs/headers/bstdio.h"
-
+#include "../include/kernel/bstdio.h"
 
 int kmain()
 {
@@ -10,15 +8,17 @@ int kmain()
 
    // char queso3[] = "ABCDEFGHIJKLNMOPQRSTuvwxyz01234567890111112sfsdd25qwertyuioasdf"; 
     char queso4[] = "123456789101112mnñopq";
-    char pmode[] = "estamos en 64 bit chicoss";
+    char pmode[] = "HOLA\n";
     // print_string(queso);
     // print_string(queso1);
     // print_string(queso2);
      print_string(pmode);
+    print_string(queso4);
+     print_string(pmode);
+     print_string(queso4);
+    clear_screen();
     //setGdt();
    
-    print_string(queso4);
-    clear_screen();
 
 
     //print_char(itoa(5, str, 16));
