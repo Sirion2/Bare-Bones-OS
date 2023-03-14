@@ -22,7 +22,7 @@ os.iso: kernel.elf
 	mkdir ../iso/boot/kernel
 	mv kernel.elf ../iso/boot/kernel/kernel.elf
 	
-	grub-mkrescue -o os.iso ../iso/
+	grub2-mkrescue -o os.iso ../iso/
 
 	mkdir ../built
 	mv os.iso ../built
